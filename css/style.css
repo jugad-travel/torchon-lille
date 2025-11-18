@@ -165,16 +165,62 @@ a {
   background: var(--rouge-torchon);
 }
 
-/* Hero - Style Ritz : grande image, titre centré, beaucoup d'espace */
+/* Hero - Style split-screen comme capture d'écran */
 .hero {
-  min-height: 90vh;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  padding: 0;
+  margin-top: 80px;
+}
+
+.hero-left {
+  background-color: var(--rouge-torchon);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 6rem 4rem;
   position: relative;
-  padding: 140px 0 100px;
-  background: linear-gradient(135deg, var(--orange-torchon) 0%, var(--rouge-torchon) 100%);
-  text-align: center;
+}
+
+.hero-left-content {
+  max-width: 600px;
+  width: 100%;
+}
+
+.hero-left h1 {
+  color: var(--beige-papier);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+}
+
+.hero-left .hero-subtitle {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: var(--beige-papier);
+  margin-bottom: 3rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--beige-papier);
+  padding-top: 1rem;
+}
+
+.hero-left .hero-text {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--beige-papier);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.hero-right {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 100vh;
 }
 
 .hero-content {
@@ -592,8 +638,18 @@ img {
   }
   
   .hero {
-    min-height: 80vh;
-    padding: 120px 0 60px;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    margin-top: 80px;
+  }
+  
+  .hero-left {
+    padding: 4rem 2rem;
+    min-height: 70vh;
+  }
+  
+  .hero-right {
+    min-height: 50vh;
   }
   
   .hero-cta {
