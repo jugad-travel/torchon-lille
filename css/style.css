@@ -1,0 +1,675 @@
+/* ============================================
+   TORCHON - DESIGN PREMIUM ÉPURÉ
+   Architecture inspirée Ritz Paris Le Comptoir
+   ============================================ */
+
+/* Variables CSS */
+:root {
+  /* Couleurs */
+  --rouge-torchon: #d62c11;
+  --rouge-fonce: #b0250e;
+  --orange-torchon: #ff6b35;
+  --beige-papier: #e7ddca;
+  --noir-profond: #1a1a1a;
+  --blanc-pur: #ffffff;
+  --gris-clair: #f5f5f5;
+  --gris-texte: #666666;
+  
+  /* Typographie */
+  --font-titre: 'Bebas Neue', 'Oswald', sans-serif;
+  --font-texte: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Espacements - Style Ritz : beaucoup d'air */
+  --marge-latérale-desktop: 120px;
+  --marge-latérale-mobile: 24px;
+  --espacement-section: 120px;
+  --espacement-large: 160px;
+  
+  /* Effets */
+  --border-radius: 0px; /* Style Ritz : pas de border-radius */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-texte);
+  color: var(--noir-profond);
+  background-color: var(--blanc-pur);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typographie - Style Ritz : grande taille, beaucoup d'espacement */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-titre);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 3rem;
+}
+
+h3 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-bottom: 1.5rem;
+}
+
+p {
+  margin-bottom: 1.8rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--noir-profond);
+}
+
+a {
+  color: var(--rouge-torchon);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Container - Style Ritz : largeur max, beaucoup de padding */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--marge-latérale-desktop);
+}
+
+.container-narrow {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--marge-latérale-desktop);
+}
+
+/* Header - Style Ritz : minimaliste, fixe, épuré */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--blanc-pur);
+  z-index: 1000;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-titre);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--rouge-torchon);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.nav {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav a {
+  color: var(--noir-profond);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.nav a.active,
+.nav a:hover {
+  color: var(--rouge-torchon);
+}
+
+.nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--rouge-torchon);
+}
+
+/* Hero - Style Ritz : grande image, titre centré, beaucoup d'espace */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 140px 0 100px;
+  background: linear-gradient(135deg, var(--orange-torchon) 0%, var(--rouge-torchon) 100%);
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  color: var(--blanc-pur);
+  margin-bottom: 2.5rem;
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  color: var(--blanc-pur);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  opacity: 0.95;
+  letter-spacing: 0.02em;
+}
+
+.hero-text {
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  color: var(--blanc-pur);
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+/* Sections - Style Ritz : beaucoup d'espace vertical */
+.section {
+  padding: var(--espacement-section) 0;
+  position: relative;
+}
+
+.section-large {
+  padding: var(--espacement-large) 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title h2 {
+  margin-bottom: 1.5rem;
+}
+
+.section-title p {
+  font-size: 1.15rem;
+  color: var(--gris-texte);
+  line-height: 1.8;
+}
+
+/* Split Layout - Style Ritz : asymétrique, beaucoup d'espace */
+.split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin: 5rem 0;
+}
+
+.split-content {
+  padding: 3rem 0;
+}
+
+.split-content h2 {
+  margin-bottom: 2.5rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.split-content p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  margin-bottom: 2rem;
+}
+
+.split-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--gris-clair);
+}
+
+.split-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cards - Style Ritz : simples, ombres subtiles, beaucoup d'espace */
+.card {
+  background-color: var(--blanc-pur);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.card-image {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  background: var(--gris-clair);
+}
+
+.card-content {
+  padding: 3rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  margin-bottom: 1.5rem;
+  color: var(--rouge-torchon);
+}
+
+.card-price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--noir-profond);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-texte);
+}
+
+.card p {
+  font-size: 1rem;
+  color: var(--gris-texte);
+  margin-bottom: 0;
+  line-height: 1.8;
+  flex: 1;
+}
+
+/* Grid - Style Ritz : espacement généreux */
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 3rem;
+  margin: 4rem 0;
+}
+
+.col-12 { grid-column: span 12; }
+.col-6 { grid-column: span 6; }
+.col-4 { grid-column: span 4; }
+.col-3 { grid-column: span 3; }
+
+/* Boutons - Style Ritz : simples, épurés */
+.btn {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  background-color: var(--rouge-torchon);
+  color: var(--blanc-pur);
+  border: none;
+  border-radius: 0;
+  font-family: var(--font-texte);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: var(--rouge-fonce);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--blanc-pur);
+  border: 1px solid var(--blanc-pur);
+}
+
+.btn-secondary:hover {
+  background-color: var(--blanc-pur);
+  color: var(--rouge-torchon);
+}
+
+/* Liste à puces - Style Ritz : espacement généreux */
+.points-list {
+  list-style: none;
+  margin: 3rem 0;
+}
+
+.points-list li {
+  padding: 1rem 0;
+  padding-left: 2rem;
+  position: relative;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--noir-profond);
+}
+
+.points-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--rouge-torchon);
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+/* Images - Style Ritz : grandes, qualité */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.image-container {
+  margin: 5rem 0;
+  text-align: center;
+}
+
+.image-container img {
+  box-shadow: var(--shadow-card);
+  max-width: 100%;
+}
+
+/* Section rouge - Style Ritz : plein écran, centré */
+.section-red {
+  background: linear-gradient(135deg, var(--rouge-torchon) 0%, var(--rouge-fonce) 100%);
+  color: var(--blanc-pur);
+  padding: var(--espacement-large) 0;
+}
+
+.section-red h2,
+.section-red p {
+  color: var(--blanc-pur);
+}
+
+.section-red .btn {
+  background-color: var(--blanc-pur);
+  color: var(--rouge-torchon);
+}
+
+.section-red .btn:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Footer - Style Ritz : épuré, simple */
+.footer {
+  background-color: var(--gris-clair);
+  padding: 6rem 0 3rem;
+  margin-top: var(--espacement-large);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.footer-logo {
+  font-family: var(--font-titre);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--rouge-torchon);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
+}
+
+.footer-tagline {
+  font-style: italic;
+  color: var(--gris-texte);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: var(--noir-profond);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+  font-weight: 400;
+}
+
+.footer-links a:hover {
+  color: var(--rouge-torchon);
+}
+
+.footer-copyright {
+  text-align: center;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--gris-texte);
+  font-size: 0.85rem;
+}
+
+/* Formulaires - Style Ritz : épurés, beaucoup d'espace */
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--noir-profond);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0;
+  font-family: var(--font-texte);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--blanc-pur);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--rouge-torchon);
+}
+
+.form-textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  :root {
+    --marge-latérale-desktop: 60px;
+    --espacement-section: 80px;
+    --espacement-large: 100px;
+  }
+  
+  .split-layout {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .row {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --marge-latérale-desktop: 24px;
+    --espacement-section: 60px;
+    --espacement-large: 80px;
+  }
+  
+  .container {
+    padding: 0 var(--marge-latérale-mobile);
+  }
+  
+  .container-narrow {
+    padding: 0 var(--marge-latérale-mobile);
+  }
+  
+  .header {
+    padding: 1.5rem 0;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .hero {
+    min-height: 80vh;
+    padding: 120px 0 60px;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .hero-cta .btn {
+    width: 100%;
+  }
+  
+  .row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .col-12,
+  .col-6,
+  .col-4,
+  .col-3 {
+    grid-column: span 12;
+  }
+  
+  .section {
+    padding: calc(var(--espacement-section) / 2) 0;
+  }
+  
+  .section-large {
+    padding: calc(var(--espacement-large) / 2) 0;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .card-content {
+    padding: 2rem;
+  }
+  
+  .card-image {
+    height: 220px;
+  }
+  
+  .split-layout {
+    gap: 40px;
+    margin: 3rem 0;
+  }
+}
+
+/* Utilitaires */
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mt-4 { margin-top: 4rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+.mb-4 { margin-bottom: 4rem; }
+
+/* Animations subtiles */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
