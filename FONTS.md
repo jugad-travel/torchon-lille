@@ -27,3 +27,4 @@ Actuellement, le site utilise **Bubblegum Sans** comme alternative disponible su
 
 Ces polices sont utilisées pour les paragraphes et le texte courant. Elles sont chargées via Google Fonts dans chaque page HTML.
 
+

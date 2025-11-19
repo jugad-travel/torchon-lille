@@ -54,3 +54,4 @@ Avant d'ajouter les images, pensez à les optimiser pour le web :
 - Réduisez la taille des fichiers tout en gardant une bonne qualité
 - Utilisez le format WebP si possible (avec fallback JPG)
 
+

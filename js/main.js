@@ -28,7 +28,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Animation au scroll
+  // Gestion des images fixes avec IntersectionObserver
+  const fixedImageSections = document.querySelectorAll('.section-fixed-image');
+  
+  if (fixedImageSections.length > 0) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -20% 0px',
+      threshold: 0.3
+    };
+    
+    const imageObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Désactiver toutes les autres images fixes
+          fixedImageSections.forEach(section => {
+            section.classList.remove('active');
+          });
+          // Activer l'image de la section visible
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+    
+    fixedImageSections.forEach(section => {
+      imageObserver.observe(section);
+    });
+    
+    // Activer la première section au chargement si elle est visible
+    const firstSection = fixedImageSections[0];
+    if (firstSection) {
+      const rect = firstSection.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        firstSection.classList.add('active');
+      }
+    }
+  }
+  
+  // Animation au scroll pour les autres éléments
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -42,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, observerOptions);
   
-  document.querySelectorAll('.card, .section, .split-layout').forEach(el => {
+  document.querySelectorAll('.card, .section:not(.section-fixed-image)').forEach(el => {
     observer.observe(el);
   });
   
@@ -51,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
   forms.forEach(form => {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      // Ici on pourrait ajouter la logique d'envoi
       alert('Merci ! Votre message a été envoyé.');
       form.reset();
     });
@@ -61,15 +97,18 @@ document.addEventListener('DOMContentLoaded', function() {
   let lastScroll = 0;
   const header = document.querySelector('.header');
   
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-      header.style.boxShadow = '0 2px 20px rgba(214, 44, 17, 0.1)';
-    } else {
-      header.style.boxShadow = 'none';
-    }
-    
-    lastScroll = currentScroll;
-  });
+  if (header) {
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        header.style.boxShadow = '0 2px 20px rgba(214, 44, 17, 0.1)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+      
+      lastScroll = currentScroll;
+    });
+  }
+  
 });
