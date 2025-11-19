@@ -934,6 +934,7 @@ img {
     background-position: center;
     opacity: 1;
     order: 1;
+    z-index: 1;
   }
   
   .section-fixed-image:not(.hero-section) .container {
@@ -959,7 +960,7 @@ img {
   }
   
   .section-sandwich .split-content-right {
-    background-color: var(--rouge-torchon);
+    background-color: var(--rouge-torchon) !important;
     padding: 3rem 2rem;
     margin: 0;
     width: 100%;
@@ -994,6 +995,9 @@ img {
     padding: 2rem 1.5rem;
     margin-left: 0;
     width: 100%;
+    background: rgba(176, 37, 14, 0.85) !important;
+    position: relative;
+    z-index: 2;
   }
   
   /* Ajustement des titres sur mobile */
@@ -1047,27 +1051,21 @@ img {
     background-position: center top;
     background-repeat: no-repeat;
     height: 100vh;
+    z-index: 1;
+    position: relative;
   }
   
   .hero-section .container {
     min-height: 100vh;
     align-items: flex-end;
     padding-bottom: 2rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+    background: transparent;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    position: relative;
+    z-index: 2;
   }
   
-  /* Dégradé noir derrière les textes sur mobile pour améliorer la lisibilité */
-  .split-content-right {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.3) 100%);
-    padding: 3rem 1.5rem !important;
-  }
-  
-  .split-content-left {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.3) 100%);
-    padding: 3rem 1.5rem !important;
-  }
   
   /* Cards sur mobile */
   .card {
