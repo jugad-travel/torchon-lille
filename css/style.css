@@ -140,6 +140,10 @@ a {
   align-items: center;
 }
 
+.nav-menu {
+  display: block;
+}
+
 
 .nav a {
   color: var(--noir-profond);
@@ -166,6 +170,42 @@ a {
   background: var(--rouge-torchon);
 }
 
+/* Menu hamburger - caché sur desktop */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  position: relative;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--rouge-torchon);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
 
 /* Hero section avec image fixe */
 .hero-section {
@@ -572,6 +612,8 @@ img {
   padding: 6rem 0 3rem;
   margin-top: var(--espacement-large);
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 10;
 }
 
 .footer-content {
@@ -776,24 +818,165 @@ img {
     margin: 3rem 0;
   }
   
-  /* Amélioration des sections avec images fixes sur mobile */
-  .section-fixed-image {
-    min-height: 70vh;
+  /* Menu hamburger visible sur mobile */
+  .menu-toggle {
+    display: flex !important;
+    min-width: 32px;
+    min-height: 32px;
+    border: 2px solid var(--rouge-torchon);
+    background-color: transparent;
+    padding: 4px;
+  }
+  
+  .menu-toggle span {
+    display: block !important;
+    width: 100% !important;
+    height: 3px !important;
+    background-color: var(--rouge-torchon) !important;
+    margin: 2px 0;
+  }
+  
+  /* Menu normal caché sur mobile */
+  .nav-menu .nav {
+    display: none;
+  }
+  
+  /* Menu déroulant sur mobile - caché par défaut, visible avec .active */
+  .nav-menu {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--blanc-pur);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding-top: 80px;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    visibility: visible !important;
+  }
+  
+  .nav-menu.active {
+    transform: translateX(0);
+  }
+  
+  .nav-menu.active .nav {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0;
     padding: 2rem 0;
-  }
-  
-  .section-fixed-image .fixed-image-bg {
-    position: absolute;
-    height: 100%;
-    background-size: contain;
-    background-position: center top;
-    opacity: 1;
-  }
-  
-  .section-fixed-image .container {
-    min-height: 70vh;
     align-items: flex-start;
-    padding-top: 2rem;
+    width: 100%;
+  }
+  
+  .nav-menu .nav li {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .nav-menu .nav a {
+    display: block;
+    padding: 1.5rem 2rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  .nav-menu .nav a.active::after {
+    display: none;
+  }
+  
+  /* Hero section - doit rester visible */
+  .hero-section {
+    min-height: 100vh;
+    display: block !important;
+    flex-direction: unset !important;
+  }
+  
+  .hero-section .fixed-image-bg {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    order: unset !important;
+  }
+  
+  .hero-section .container {
+    min-height: 100vh;
+    align-items: flex-end;
+    padding-bottom: 2rem;
+    order: unset !important;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Amélioration des sections avec images fixes sur mobile (sauf hero) */
+  .section-fixed-image:not(.hero-section) {
+    min-height: auto;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .section-fixed-image:not(.hero-section) .fixed-image-bg {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    min-height: 300px;
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    order: 1;
+  }
+  
+  .section-fixed-image:not(.hero-section) .container {
+    min-height: auto;
+    padding: 0;
+    order: 2;
+  }
+  
+  /* Section sandwich spécifique - Image en haut, texte en bas avec cadre rouge */
+  .section-sandwich {
+    flex-direction: column;
+  }
+  
+  .section-sandwich .fixed-image-bg {
+    height: 50vh;
+    min-height: 300px;
+    order: 1;
+  }
+  
+  .section-sandwich .container {
+    order: 2;
+    padding: 0;
+  }
+  
+  .section-sandwich .split-content-right {
+    background-color: var(--rouge-torchon);
+    padding: 3rem 2rem;
+    margin: 0;
+    width: 100%;
+    order: 2;
+  }
+  
+  .section-sandwich .split-content-right h2,
+  .section-sandwich .split-content-right p {
+    color: var(--beige-papier) !important;
+  }
+  
+  .section-sandwich .split-content-right .points-list li {
+    color: var(--beige-papier) !important;
+  }
+  
+  .section-sandwich .split-content-right .points-list li::before {
+    color: var(--beige-papier) !important;
   }
   
   /* Layout split sur mobile */
@@ -801,6 +984,8 @@ img {
     grid-template-columns: 1fr;
     gap: 0;
     min-height: auto;
+    display: flex;
+    flex-direction: column;
   }
   
   .split-content-left,
